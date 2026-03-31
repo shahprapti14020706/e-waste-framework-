@@ -15,24 +15,24 @@
 
     <section class="summary-cards">
       <div class="summary-card">
-        <div class="card-icon">📦</div>
-        <h3>Framework</h3>
-        <p>5R Model</p>
-      </div>
-      <div class="summary-card">
-        <div class="card-icon">🔍</div>
-        <h3>Focus</h3>
-        <p>Better Segregation</p>
+        <div class="card-icon">📋</div>
+        <h3>Total Checked</h3>
+        <p id="totalCount">0</p>
       </div>
       <div class="summary-card">
         <div class="card-icon">🛠</div>
-        <h3>Priority</h3>
-        <p>Repair & Reuse</p>
+        <h3>Repair</h3>
+        <p id="repairCount">0</p>
       </div>
       <div class="summary-card">
-        <div class="card-icon">🌱</div>
-        <h3>Outcome</h3>
-        <p>Safe Handling</p>
+        <div class="card-icon">🔄</div>
+        <h3>Reuse</h3>
+        <p id="reuseCount">0</p>
+      </div>
+      <div class="summary-card">
+        <div class="card-icon">♻</div>
+        <h3>Recycle / Recover</h3>
+        <p id="recycleRecoverCount">0</p>
       </div>
     </section>
 
@@ -87,6 +87,7 @@
 
         <div class="btn-row">
           <button id="suggestBtn">Suggest Best Action</button>
+          <button id="addBtn" class="secondary-btn">Add to History</button>
           <button id="resetBtn" class="secondary-btn">Reset</button>
         </div>
       </section>
@@ -98,6 +99,22 @@
             <h3>Suggested Action</h3>
             <div id="resultBadge" class="result-badge neutral">Waiting</div>
             <p id="reason">The result and explanation will appear here.</p>
+
+            <div class="meta-grid">
+              <div class="meta-box">
+                <span class="meta-label">Hazard Level</span>
+                <span id="hazardLevel" class="meta-value">—</span>
+              </div>
+              <div class="meta-box">
+                <span class="meta-label">Recommended Route</span>
+                <span id="routeText" class="meta-value">—</span>
+              </div>
+            </div>
+
+            <div class="tip-box">
+              <h4>Awareness Tip</h4>
+              <p id="awarenessTip">Useful guidance will appear here after classification.</p>
+            </div>
           </div>
         </section>
 
@@ -111,7 +128,7 @@
             <span>Repair / Reuse / Recycle / Recover</span>
           </div>
           <p class="note">
-            The framework checks the condition of the device and routes it toward the most suitable sustainable action.
+            The framework checks device condition and routes each item to the most suitable sustainable action.
           </p>
         </section>
 
@@ -141,42 +158,50 @@
 
     <div class="bottom-layout">
       <section class="card">
-        <h2>Expected Action Distribution</h2>
-        <p class="small-text">Illustrative view of how the framework prioritizes sustainable actions</p>
+        <h2>Live Action Distribution</h2>
+        <p class="small-text">Updates automatically based on classified records</p>
 
         <div class="chart-block">
           <div class="chart-row">
             <div class="chart-label">Reuse / Refurbish</div>
             <div class="chart-bar-area">
-              <div class="chart-bar reuse-bar" style="width: 32%;">32%</div>
+              <div id="reuseBar" class="chart-bar reuse-bar" style="width: 0%;">0%</div>
             </div>
           </div>
 
           <div class="chart-row">
             <div class="chart-label">Repair</div>
             <div class="chart-bar-area">
-              <div class="chart-bar repair-bar" style="width: 24%;">24%</div>
+              <div id="repairBar" class="chart-bar repair-bar" style="width: 0%;">0%</div>
             </div>
           </div>
 
           <div class="chart-row">
             <div class="chart-label">Recycle</div>
             <div class="chart-bar-area">
-              <div class="chart-bar recycle-bar" style="width: 26%;">26%</div>
+              <div id="recycleBar" class="chart-bar recycle-bar" style="width: 0%;">0%</div>
             </div>
           </div>
 
           <div class="chart-row">
             <div class="chart-label">Recover</div>
             <div class="chart-bar-area">
-              <div class="chart-bar recover-bar" style="width: 18%;">18%</div>
+              <div id="recoverBar" class="chart-bar recover-bar" style="width: 0%;">0%</div>
             </div>
           </div>
         </div>
       </section>
 
       <section class="card">
-        <h2>Sample Cases</h2>
+        <div class="card-head">
+          <h2>Classification History</h2>
+          <div class="history-actions">
+            <button id="downloadCsvBtn" class="secondary-btn small-btn">Download CSV</button>
+            <button id="printBtn" class="secondary-btn small-btn">Print / Save PDF</button>
+            <button id="clearHistoryBtn" class="danger-btn small-btn">Clear History</button>
+          </div>
+        </div>
+
         <div class="table-wrapper">
           <table>
             <thead>
@@ -187,48 +212,13 @@
                 <th>Reusable</th>
                 <th>Recovery</th>
                 <th>Action</th>
+                <th>Hazard</th>
+                <th>Route</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Laptop</td>
-                <td>Not Working</td>
-                <td>Yes</td>
-                <td>No</td>
-                <td>Yes</td>
-                <td>Repair</td>
-              </tr>
-              <tr>
-                <td>Mobile</td>
-                <td>Working</td>
-                <td>—</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Reuse / Refurbish</td>
-              </tr>
-              <tr>
-                <td>Battery</td>
-                <td>Not Working</td>
-                <td>No</td>
-                <td>No</td>
-                <td>Yes</td>
-                <td>Recycle</td>
-              </tr>
-              <tr>
-                <td>Charger</td>
-                <td>Not Working</td>
-                <td>No</td>
-                <td>No</td>
-                <td>Yes</td>
-                <td>Recover</td>
-              </tr>
-              <tr>
-                <td>Printer</td>
-                <td>Old but Working</td>
-                <td>—</td>
-                <td>Yes</td>
-                <td>Yes</td>
-                <td>Reuse / Refurbish</td>
+            <tbody id="historyBody">
+              <tr class="empty-row">
+                <td colspan="8">No records added yet.</td>
               </tr>
             </tbody>
           </table>
